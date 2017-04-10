@@ -10,7 +10,7 @@ export default {
 	devtool: 'source-map',
 	entry: [
 	    'webpack-hot-middleware/client?reload=true&path=http://localhost:3001/__webpack_hmr',
-		'./src/app.js'
+		'./src/index.js'
 	],
 	output: {
 		filename: 'bundle.js',
