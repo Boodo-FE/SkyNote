@@ -1,17 +1,15 @@
 import App from './app'
-import Cube from './objects/cube'
+import config from './constant/index'
+import Land from './objects/land/land'
+import Role from './objects/role/role'
+import './style/app.scss'
 
 let app = new App()
-// app.add(new Cube({
-//   width: 5,
-//   height: 5,
-//   depth: 5,
-//   color: 0x102951
-// }))
-// 
-app.add(new Cube({
-  width: 10,
-  height: 10,
-  depth: 5,
-  color: 0x102951
+
+app.add(new Land({
+	color: config.blue
 }))
+app.add(new Role({
+	color: config.red
+}))
+
