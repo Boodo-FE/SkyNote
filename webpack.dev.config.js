@@ -39,11 +39,11 @@ export default {
 	 	  },
 	 	  {
 	 	  	test: /\.scss$/,
-	 	  	loaders: 'style!css!sass'
+	 	  	loaders: 'style-loader!css-loader!sass-loader'
 	 	  },
 	 	  {
 	 	  	test: /\.(jpe?g|png|gif|svg)$/,
-	 	  	loader: 'url?limit=8024&name=images/[name].[ext]'
+	 	  	loader: 'url-loader?limit=8024&name=images/[name].[ext]'
 	 	  }
 	 	]
 	 },
