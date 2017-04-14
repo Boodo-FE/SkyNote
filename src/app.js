@@ -1,7 +1,8 @@
 import * as THREE from 'three'
 import Land from './objects/land/land'
 import Role from './objects/role/role'
-
+import Star from './objects/sky/star'
+import Sun from './objects/sky/sun'
 class App {
   constructor() {
     this.objects = []
@@ -60,6 +61,10 @@ class App {
             object.update()
           }
         })       
+      }else if(object instanceof Sun){
+        object.update()
+      }else if(object instanceof Star){
+        object.update()
       }
       
     })
