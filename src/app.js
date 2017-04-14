@@ -68,8 +68,8 @@ class App {
   }
   
   add(mesh) {
-   this.objects.push(mesh)
-   this.scene.add(mesh.getMesh());
+   // this.objects.push(mesh)
+   // this.scene.add(mesh.getMesh());
   }
   
 
