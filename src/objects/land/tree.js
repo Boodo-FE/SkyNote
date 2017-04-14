@@ -1,26 +1,30 @@
 import * as THREE from 'three'
+import Tree from '../../models/Three.Tree/Tree'
 
-class Tree{
-	Constructor(){
-		var dae;
-		var loader = new THREE.ColladaLoader();
-		loader.options.convertUpAxis = true;
-		loader.load(
-			'../../models/Tree.dae',
-			function(collada){
-			this.dae = collada.scene
-			},
-			function(xhr) {
-				console.log(`${xhr.loaded / xhr.total * 100}% loaded`);
-			}
-		)
-		this.dae.scale.x = dae.scale.y = dae.scale.z = 0.002;
-		this.dae.updateMatrix();
+class ThreeTree{
+	constructor(){
+		let size = 10;
+		let tree = new Tree({
+		    generations : 4 * size,        // # for branch' hierarchy
+		    length      : 4.0 * size,      // length of root branch
+		    uvLength    : 16.0 * size,     // uv.v ratio against geometry length (recommended is generations * length)
+		    radius      : 0.2 * size,      // radius of root branch
+		    radiusSegments : 8,     // # of radius segments for each branch geometry
+		    heightSegments : 8      // # of height segments for each branch geometry
+		});
+
+		let geometry = THREE.TreeGeometry.build(tree);
+
+		this.mesh = new THREE.Mesh(
+		    geometry, 
+		    new THREE.MeshPhongMaterial({}) // set any material
+		);
 		
 	}
-  getMesh() {
-  	return this.dae
-  }
+
+	getMesh() {
+		return this.mesh
+	}
 }
 
-export default Tree
+export default ThreeTree
