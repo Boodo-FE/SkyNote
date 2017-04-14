@@ -1,6 +1,8 @@
 import * as THREE from 'three'
 import Land from './objects/land/land'
 import Role from './objects/role/role'
+import Sky from './objects/sky/sky'
+import Bubbles from './objects/sky/bubble'
 
 class App {
   constructor() {
@@ -60,7 +62,11 @@ class App {
             object.update()
           }
         })       
-      }
+      }else if(object instanceof Bubbles){
+          object.update()
+     }else if(object instanceof Sky){
+        object.update()
+     }
       
     })
     
