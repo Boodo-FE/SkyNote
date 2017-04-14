@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Road from './road'
+import Obstacle from './obstacle'
 
 class Land {
   constructor(option) {
@@ -14,12 +15,16 @@ class Land {
   	this.mesh.receiveShadow = true
   	this.mesh.position.y = -580
 
-    let road = new Road({ color: 0xffffff }) 
-    this.mesh.add(road.getMesh())
+    this.road = new Road({ color: 0xffffff })    
+    this.mesh.add(this.road.getMesh())
+
+    this.obstacle = new Obstacle() 
+    this.mesh.add(this.obstacle.getMesh())
   }
 
-  update() {
-    this.mesh.rotation.z -= .005;
+  update(role) {
+    this.mesh.rotation.z += .005
+    this.obstacle.update(role)
   }
 
   getMesh() {
