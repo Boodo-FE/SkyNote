@@ -7,11 +7,11 @@ import './style/app.scss'
 
 let app = new App()
 
-// app.add(new Land({
-// 	color: config.blue
-// }))
-// app.add(new Role({
-// 	color: config.red
-// }))
+app.add(new Land({
+	color: config.blue
+}))
+app.add(new Role({
+	color: config.red
+}))
 
 app.add(new Tree())

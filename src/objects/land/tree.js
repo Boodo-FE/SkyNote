@@ -1,5 +1,9 @@
 import * as THREE from 'three'
-import Tree from '../../models/Three.Tree/Tree'
+import Tree from '../../models/Tree'
+
+/**
+ * 每次生成的数的形状都不一样
+ */
 
 class ThreeTree{
 	constructor(){
@@ -19,6 +23,8 @@ class ThreeTree{
 		    geometry, 
 		    new THREE.MeshPhongMaterial({}) // set any material
 		);
+
+		this.mesh.position.set(15, 80, -10); // set position
 		
 	}
 
