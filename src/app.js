@@ -2,6 +2,8 @@ import * as THREE from 'three'
 import config from './constant/index'
 import Land from './objects/land/land'
 import Role from './objects/role/role'
+import Sky from './objects/sky/sky'
+import Bubbles from './objects/sky/bubble'
 import Star from './objects/sky/star'
 import Sun from './objects/sky/sun'
 import Boy from './objects/boy/boy'
@@ -15,6 +17,8 @@ class App {
     this.role = new Role({ color: config.red })
     this.star = new Star({ color1: config.yellow, color2: config.pink})
     this.sun  = new Sun({ color1: config.red, color2: config.yellow })
+    this.sky  = new Sky();
+    this.bubble = new Bubbles()
     // this.boy  = new Boy({ color: 0xf7d9aa,  size: 4, pt: [20, 90, 30] })
 
     this.createScene()
@@ -28,6 +32,8 @@ class App {
     this.add(this.role)
     this.add(this.star)
     this.add(this.sun)
+    this.add(this.sky)
+    this.add(this.bubble)
     // this.add(this.boy)
   }
   
@@ -78,6 +84,9 @@ class App {
     // this.boy.update()
     this.star.update()
     this.sun.update()    
+    this.sky.update()
+    this.bubble.update()
+
     this.renderer.render(this.scene, this.camera)
   }
   
