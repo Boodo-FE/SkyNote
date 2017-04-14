@@ -8,7 +8,7 @@ class Arm {
         var armSize = [0.3 * option.size, 0.3 * option.size, 6 * option.size];
         this.mesh = new THREE.Mesh(new THREE.CylinderGeometry(armSize[0], armSize[1], armSize[2], 32, 3),
             new THREE.MeshLambertMaterial({
-                color: 0xff03a0
+                color: option.color
             }));
         this.mesh.position.set(0, -option.bellySize / 5, 0);
         this.mesh.rotation.x = this.mesh.rotation.x + Math.PI / 2;

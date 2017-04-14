@@ -18,6 +18,9 @@ class Sun {
     this.mesh = new THREE.Object3D()
     this.mesh.position.x = 220
     this.mesh.position.y = 50
+    this.mesh.position.z = -120
+    //this.mesh.rotation.x = - Math.PI * 45 / 360
+    //this.mesh.rotation.y = Math.PI * 20 / 360
     this.sunshine()
     this.sunbody()
     this.screen.add(this.mesh)
@@ -27,6 +30,7 @@ class Sun {
     let sbm = new THREE.Mesh(this.sunb, this.material1)
     sbm.position.x = 0
     sbm.position.y = 0
+
     //sbm.castShadow = true
     sbm.receiveShadow = true
     this.mesh.add(sbm)
@@ -35,8 +39,8 @@ class Sun {
     let nBlocs = 16
     for (let i=0; i<nBlocs; i++ ){
       let ssm = new THREE.Mesh(this.suns, this.material2)
-      ssm.position.x = 0 + Math.sin(Math.PI*i/8)*12
-      ssm.position.y = 0 + Math.cos(Math.PI*i/8)*12
+      ssm.position.x = 0 + Math.sin(Math.PI*i/8)*16
+      ssm.position.y = 0 + Math.cos(Math.PI*i/8)*16
       ssm.rotation.z = -Math.PI*i/8
       //ssm.castShadow = true
       ssm.receiveShadow = true
@@ -45,7 +49,9 @@ class Sun {
   }
   update() {
     this.mesh.position.x -= .4*Math.sin(Math.PI * this.arc++/3600)
+    //console.log(this.arc)
     this.mesh.position.y += .2*Math.cos(Math.PI * this.arc++/3600)
+            //console.log(this.mesh.position.x,this.mesh.position.y)
     this.mesh.rotation.z = (this.mesh.rotation.z + 0.01) % (Math.PI * 2);
   }
 
