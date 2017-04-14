@@ -5,6 +5,8 @@ import Tree from './objects/land/tree'
 import Role from './objects/role/role'
 import './style/app.scss'
 
+import Audio from './Audio'
+
 let app = new App()
 
 app.add(new Land({
@@ -15,3 +17,4 @@ app.add(new Role({
 }))
 
 app.add(new Tree())
+
