@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { TweenMax } from 'gsap'
+// import { TweenMax } from 'gsap'
 
 class Role {
   constructor(option) {

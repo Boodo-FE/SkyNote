@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import Leg from './leg'
 import Head from './head'
 import Arm from './arm'
-import { TweenMax } from 'gsap'
+// import { TweenMax } from 'gsap'
 
 /**
  * 任务头部，必须参数：颜色：color、大小：size、位置：pt

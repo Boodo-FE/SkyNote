@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { TweenMax } from 'gsap'
+// import { TweenMax } from 'gsap'
 
 class Obstacle {
   constructor() {    
@@ -66,12 +66,19 @@ class ObstacleHolder {
 
   update(role) {
     let originPoint = role.mesh.position.clone()
+    // Mesh数组  图形数组
+    let Meshs = [];
+    for (let i = 0; i < this.obstaclesInUse.length; i += 1) {
+      Meshs.push(this.obstaclesInUse[i].getMesh());
+    }
+
     for(let i = 0; i < role.geometry.vertices.length; i++) {
       let localVertex = role.geometry.vertices[i].clone()
       let globalVertex = localVertex.applyMatrix4(role.mesh.matrix)
       let directionVector = globalVertex.sub(role.mesh.position)
       let ray = new THREE.Raycaster(originPoint, directionVector.clone().normalize());
-      let collisionResults = ray.intersectObjects(this.obstaclesInUse);
+      
+      let collisionResults = ray.intersectObjects(Meshs);
       if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
          console.log('crash!')
       }
