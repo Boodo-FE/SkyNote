@@ -18,6 +18,7 @@ class Sun {
     this.mesh = new THREE.Object3D()
     this.mesh.position.x = 220
     this.mesh.position.y = 50
+    this.mesh.position.z = -120
     //this.mesh.rotation.x = - Math.PI * 45 / 360
     //this.mesh.rotation.y = Math.PI * 20 / 360
     this.sunshine()
@@ -29,6 +30,7 @@ class Sun {
     let sbm = new THREE.Mesh(this.sunb, this.material1)
     sbm.position.x = 0
     sbm.position.y = 0
+
     //sbm.castShadow = true
     sbm.receiveShadow = true
     this.mesh.add(sbm)

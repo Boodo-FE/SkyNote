@@ -16,6 +16,7 @@ class Star {
    
   	this.mesh.position.x = -230
     this.mesh.position.y = 20
+    this.mesh.position.z = -120
     this.stars()
     this.moon()
     this.arc2 = 4000
