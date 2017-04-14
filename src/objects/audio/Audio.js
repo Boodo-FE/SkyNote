@@ -32,7 +32,7 @@ class AudioAPI {
     console.log(this.dataArray);
     this.analyser.getByteFrequencyData(this.dataArray);
     let sum = this.dataArray.reduce((a, b) => a + b);
-    this.volume = sum;
+    this.volume = Math.round(sum / 500);
 
     console.log(this.volume);
     return this.volume;
