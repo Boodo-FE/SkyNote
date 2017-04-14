@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Road from './road'
+import Tree from './tree'
 
 class Land {
   constructor(option) {
@@ -16,6 +17,7 @@ class Land {
 
     let road = new Road({ color: 0xffffff }) 
     this.mesh.add(road.getMesh())
+
   }
 
   update() {

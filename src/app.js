@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import Land from './objects/land/land'
 import Role from './objects/role/role'
+import Tree from './objects/land/tree'
 
 class App {
   constructor() {
@@ -42,7 +43,6 @@ class App {
     this.shadowLight.shadow.camera.far = 1000
     this.shadowLight.shadow.mapSize.width = 2048
     this.shadowLight.shadow.mapSize.height = 2048
-
     this.scene.add(this.hemisphereLight)
     this.scene.add(this.shadowLight)
   }
@@ -68,9 +68,11 @@ class App {
   }
   
   add(mesh) {
-    this.objects.push(mesh)
-    this.scene.add(mesh.getMesh())
+   this.objects.push(mesh)
+   this.scene.add(mesh.getMesh());
   }
+  
+
 
   handleWindowResize() {
     this.renderer.setSize(window.innerWidth, window.innerHeight)
