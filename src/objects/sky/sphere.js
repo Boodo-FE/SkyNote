@@ -8,7 +8,7 @@ class Sphere{
 		this.material = new THREE.MeshPhongMaterial({
 			color: 0x156289,
 			emissive: 0x072534,
-			opacity: .8
+			opacity: .1
 			//wireframe: true 
 			})
 		let me = new THREE.Mesh( this.geometry, this.material)

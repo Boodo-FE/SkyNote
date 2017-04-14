@@ -1,9 +1,7 @@
 import * as THREE from 'three'
 import Cloud from './cloud'
 
-
 //球体、三棱锥、云彩
-
 class Sky{
 
 	constructor(){
@@ -19,7 +17,6 @@ class Sky{
 			let clouds = new Cloud()
 
 			let a = step * i+5
-			//let h = Math.random()*200 - 100
 			let h = 100
 			let l = 150
 
@@ -36,11 +33,8 @@ class Sky{
 		let l = this.mesh.children.length;
 		for(let i=0;i<l;i++){
 			let m = this.mesh.children[i]
-				m.rotation.z -= .005
-				// m.position.x = Math.cos(this.clock) * 200 + i * 10;
-				// m.position.y = Math.sin(this.clock) * 200 + i * 10;
-				// this.clock += 0.003;
-
+				m.position.x -= .8*Math.sin(Math.PI *(this.clock++)/3600)
+   				m.position.y += .2*Math.cos(Math.PI *(this.clock++)/3600)
 		}
 	}
 
