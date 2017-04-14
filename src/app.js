@@ -61,9 +61,7 @@ class App {
             object.update()
           }
         })       
-      }else if(object instanceof Sun){
-        object.update()
-      }else if(object instanceof Star){
+      }else if(object instanceof Sun || object instanceof Star){
         object.update()
       }
       

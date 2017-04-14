@@ -24,3 +24,4 @@ app.add(new Sun({
 	color1: config.red,
 	color2: config.yellow
 }))
+

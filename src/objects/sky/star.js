@@ -3,8 +3,13 @@ import * as THREE from 'three'
 class Star {
   constructor(option) {
     this.mesh = new THREE.Object3D()
-  	this.material = new THREE.MeshBasicMaterial({
-  		color: option.color,
+    this.material = new THREE.MeshBasicMaterial({
+      color: option.color,
+      shininess:1,
+      specular:0xffffff,
+    })
+    this.trans = new THREE.MeshBasicMaterial({
+      color: 0xf7d9aa,
       shininess:1,
       specular:0xffffff,
     })
@@ -19,11 +24,15 @@ class Star {
     //this.moonG = new THREE.CircleGeometry(3, 18, Math.PI / 3, Math.PI / 3 * 4)
     this.moonG = new THREE.SphereGeometry(12, 30, 30)
     let mm = new THREE.Mesh(this.moonG, this.material)
+    let mm2 = new THREE.Mesh(this.moonG, this.trans)
     mm.position.x = 0
     mm.position.y = 0
+    mm2.position.x = 2
+    mm2.position.y = 2
     //mm.castShadow = true
     mm.receiveShadow = true
     this.mesh.add(mm)
+    this.mesh.add(mm2)
   }
   stars(){
     this.geometry = new THREE.CylinderGeometry(0.01, 1.6, 5, 18, 10)
@@ -39,11 +48,13 @@ class Star {
         penta.receiveShadow = true
         m.add(penta)
       }
-      m.position.x = Math.random()*50;
-      m.position.y = Math.random()*50;
-      m.position.z = Math.random()*10;
-      m.rotation.z = 0.1*Math.random()*Math.PI;
-      m.rotation.y = 0.1*Math.random()*Math.PI;
+      m.position.x = j*50;
+      m.position.y = Math.random()*30;
+      m.position.z = Math.random()*30;
+      m.rotation.z = Math.random()*Math.PI*2;
+      m.rotation.y = Math.random()*Math.PI*2;
+      var s = 1 + Math.random()*.9;
+      m.scale.set(s,s,s);
       this.mesh.add(m)
     }    
   }
