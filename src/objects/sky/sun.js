@@ -45,9 +45,7 @@ class Sun {
   }
   update() {
     this.mesh.position.x -= .4*Math.sin(Math.PI * this.arc++/3600)
-    console.log(this.arc)
     this.mesh.position.y += .2*Math.cos(Math.PI * this.arc++/3600)
-            console.log(this.mesh.position.x,this.mesh.position.y)
     this.mesh.rotation.z = (this.mesh.rotation.z + 0.01) % (Math.PI * 2);
   }
 

@@ -1,3 +1,10 @@
+/**
+ * 使用方法：
+ * 1. let audio = new Audio();
+ * 2. audio.start() // 开始获取麦克风
+ * 3. let voiceSize = audio.getVoiceSize(); // 获取音量大小
+ */
+
 class AudioAPI {
   constructor() {
     let AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -16,8 +23,7 @@ class AudioAPI {
       (stream) => {
         that.source = that.context.createMediaStreamSource(stream);
         that.source.connect(that.analyser);
-        console.log(1);
-        that.bufferLength = tha.analyser.frequencyBinCount;
+        that.bufferLength = that.analyser.frequencyBinCount;
         that.dataArray = new Uint8Array(that.bufferLength);
       },
       function (err) {
@@ -28,14 +34,16 @@ class AudioAPI {
 
   getVoiceSize() {
 
-    // 通过analyser获取音量
-    console.log(this.dataArray);
-    this.analyser.getByteFrequencyData(this.dataArray);
-    let sum = this.dataArray.reduce((a, b) => a + b);
-    this.volume = Math.round(sum / 500);
+    if (this.dataArray instanceof Uint8Array) {
+      // 通过analyser获取音量
+      this.analyser.getByteFrequencyData(this.dataArray);
+      let sum = this.dataArray.reduce((a, b) => a + b);
+      this.volume = Math.round(sum / 100);
 
-    console.log(this.volume);
-    return this.volume;
+      return this.volume;
+    } else {
+      return 0;
+    }
   }
 
 }
