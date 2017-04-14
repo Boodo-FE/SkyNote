@@ -31,6 +31,7 @@ class ThreeTree{
 	getMesh() {
 		return this.mesh
 	}
+
 }
 
 export default ThreeTree

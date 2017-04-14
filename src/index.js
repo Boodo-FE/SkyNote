@@ -3,9 +3,8 @@ import config from './constant/index'
 import Land from './objects/land/land'
 import Tree from './objects/land/tree'
 import Role from './objects/role/role'
+import Audio from './objects/audio/Audio'
 import './style/app.scss'
-
-import Audio from './Audio'
 
 let app = new App()
 
