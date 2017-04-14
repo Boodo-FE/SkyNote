@@ -6,6 +6,7 @@ const config = {
     brownDark:0x23190f,
     blue:0x68c3c0,
     yellow:0xfaf32e,
+    pink:0xfaff72
 }
 
 export default config

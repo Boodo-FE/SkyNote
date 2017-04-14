@@ -16,9 +16,9 @@ class Sun {
     })
     this.screen = new THREE.Object3D()
     this.mesh = new THREE.Object3D()
-    this.mesh.position.x = 220
-    this.mesh.position.y = 50
-    this.mesh.position.z = -120
+    this.mesh.position.x = 400
+    this.mesh.position.y = 60
+    this.mesh.position.z = -150
     //this.mesh.rotation.x = - Math.PI * 45 / 360
     //this.mesh.rotation.y = Math.PI * 20 / 360
     this.sunshine()
@@ -48,10 +48,10 @@ class Sun {
     }
   }
   update() {
-    this.mesh.position.x -= .4*Math.sin(Math.PI * this.arc++/3600)
+    this.mesh.position.x -= .8*Math.sin(Math.PI * this.arc++/3600)
     //console.log(this.arc)
-    this.mesh.position.y += .2*Math.cos(Math.PI * this.arc++/3600)
-            //console.log(this.mesh.position.x,this.mesh.position.y)
+    this.mesh.position.y += .35*Math.cos(Math.PI * this.arc++/3600)
+    //console.log(this.mesh.position.x,this.mesh.position.y)
     this.mesh.rotation.z = (this.mesh.rotation.z + 0.01) % (Math.PI * 2);
   }
 

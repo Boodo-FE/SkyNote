@@ -13,7 +13,7 @@ class App {
 
     this.land = new Land({ color: config.blue})
     this.role = new Role({ color: config.red })
-    this.star = new Star({ color: config.yellow })
+    this.star = new Star({ color1: config.yellow, color2: config.pink})
     this.sun  = new Sun({ color1: config.red, color2: config.yellow })
     // this.boy  = new Boy({ color: 0xf7d9aa,  size: 4, pt: [20, 90, 30] })
 
