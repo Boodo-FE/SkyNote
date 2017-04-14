@@ -6,6 +6,8 @@ import Star from './objects/sky/star'
 import Sun from './objects/sky/sun'
 import './style/app.scss'
 
+import Audio from './objects/audio/Audio'
+
 let app = new App()
 
 app.add(new Land({
