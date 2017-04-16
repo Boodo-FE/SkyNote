@@ -1,21 +1,18 @@
 import path from 'path'
 import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 import _debug from 'debug'
 
-const debug = _debug('app:dev')
+const debug = _debug('app:prod')
 
 debug('Create configuration')
 
 export default {
-	devtool: 'source-map',
-	entry: [
-	    'webpack-hot-middleware/client?reload=true&path=http://localhost:3001/__webpack_hmr',
-		'./src/index.js'
-	],
+	entry: './src/index.js',
 	output: {
 		filename: 'bundle.js',
-		path: path.resolve(__dirname, '../build/'),
-		publicPath: 'http://localhost:3001/build/'
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: './'
 	},
 	resolve: {
 	    extensions: ['.js', '.jsx', '.json'],
@@ -48,6 +45,13 @@ export default {
 	 	]
 	 },
 	 plugins: [
-  	 	new webpack.HotModuleReplacementPlugin(),
-  	 	new webpack.NoEmitOnErrorsPlugin()	 ]
+  	 	new webpack.optimize.OccurrenceOrderPlugin(),
+  	 	new webpack.NoEmitOnErrorsPlugin(),
+  	 	new HtmlWebpackPlugin({
+  	 		filename: 'index.html',
+  	 		template: './template/index.ejs',
+  	 		inject: 'body',
+  	 		hash: false
+  	 	})	 
+  	 ]
 }
