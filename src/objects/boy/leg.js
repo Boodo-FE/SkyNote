@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { TweenMax } from 'gsap'
 
 /**
  * 人物腿，必须参数：

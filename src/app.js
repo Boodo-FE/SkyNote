@@ -1,40 +1,54 @@
 import * as THREE from 'three'
 import config from './constant/index'
 import Land from './objects/land/land'
-import Role from './objects/role/role'
 import Sky from './objects/sky/sky'
 import Bubbles from './objects/sky/bubble'
 import Star from './objects/sky/star'
 import Sun from './objects/sky/sun'
 import Boy from './objects/boy/boy'
 import Audio from './objects/audio/Audio'
+import Obstacle from './objects/land/obstacle'
+import Particle from './objects/boy/particle'
 
 
 class App {
   constructor() {
 
+
     this.land = new Land({ color: config.blue})
-    this.role = new Role({ color: config.red })
     this.star = new Star({ color1: config.yellow, color2: config.pink})
     this.sun  = new Sun({ color1: config.red, color2: config.yellow })
     this.sky  = new Sky();
     this.bubble = new Bubbles()
-    // this.boy  = new Boy({ color: 0xf7d9aa,  size: 4, pt: [20, 90, 30] })
+    this.boy  = new Boy({ color: 0xf7d9aa,  size: 4, pt: [0, 85, -20] })
+    this.audio = new Audio()
+    this.obstacle = new Obstacle() 
+    this.particle = new Particle()
 
     this.createScene()
     this.createLights()
     this.addMesh()   
-    this.handleEvents()
+    this.audio.start()
+
+    this.startBtn = document.querySelector('.gamestart')
+    this.startBtn.addEventListener('click', this.gameStart.bind(this), false) 
+
+    this.gameover = document.querySelector('.gameover')
+    this.overBtn = document.querySelector('.overBtn')
+    this.overBtn.addEventListener('click', this.reset, false)
+
+    this.goalBoard = document.querySelector('#distValue')
+
+    this.goal = 0
   }
 
   addMesh() {
     this.add(this.land)
-    this.add(this.role)
     this.add(this.star)
     this.add(this.sun)
     this.add(this.sky)
     this.add(this.bubble)
-    // this.add(this.boy)
+    this.add(this.boy)
   }
   
   createScene() {
@@ -81,7 +95,26 @@ class App {
       this.render()
     })
 
-    // this.boy.update()
+    if(this.land.getStatus()) {
+      this.status = this.land.getStatus()
+    }
+      
+    if(this.status === 'playing') {
+      let voice = this.audio.getVoiceSize()
+      if(voice > 40) {
+        this.land.update(this.boy)
+        this.goal += 10
+        this.goalBoard.innerHTML = this.goal
+      }
+      if(voice > 140) {
+        // console.log(voice)
+        this.boy.update(voice + 40)
+      }
+
+    } else if(this.status === 'gameover') {
+      this.gameOver()
+    } else if(this.status === 'gamestart') { }
+
     this.star.update()
     this.sun.update()    
     this.sky.update()
@@ -94,23 +127,37 @@ class App {
     this.scene.add(mesh.getMesh())
   }
 
-  handleEvents() {
-    let that = this
-    document.addEventListener('keyup', function(e) {
-      e.preventDefault()
-      if(e.which === 38) {
-        that.role.update()
-      }
-    }, false)
-    document.addEventListener('mousemove', function(e) {
-      e.preventDefault()
-      that.land.update(that.role)
-      // if(e.which === 39) {
-      //   that.land.update()
-      // }
-    }, false)
+  gameStart() {
+    this.status = 'playing'
+    this.hide(this.startBtn) 
+    this.hide(this.gameover) 
   }
 
+  gameOver() {
+    this.show(this.gameover)
+    this.show(this.overBtn)
+    this.particle.spawnParticles(this.boy.mesh.position.clone(), 5, 0xf7d9aa, .8)
+    this.scene.remove(this.boy.mesh)
+    this.land.setStatus(' ')
+    this.status = 'gamestart'
+  }
+
+  hide(el) {
+    el.style.display = 'none'
+  }
+
+  show(el) {
+    el.style.display = 'block'
+  }
+
+  reset() {
+     window.location.reload()
+  }
+
+  handlePaticle() {
+    
+  }
+  
   handleWindowResize() {
     this.renderer.setSize(window.innerWidth, window.innerHeight)
     this.camera.aspect = window.innerWidth / window.innerHeight

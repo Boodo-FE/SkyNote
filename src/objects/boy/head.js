@@ -14,7 +14,7 @@ class Head {
             new THREE.SphereGeometry(r, 50, 50),
             sphereMaterial
         );
-        this.sphere.position.set(0, -option.bellySize / 2 - r * 0.8, 0);
+        this.sphere.position.set(0, -option.bellySize / 2 - r * 0.6, 0);
         this.sphere.geometry.verticesNeedUpdate = true;
         this.sphere.geometry.normalsNeedUpdate = true;
     }

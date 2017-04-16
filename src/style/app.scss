@@ -37,11 +37,11 @@ a:focus {
 	height: 100%;
 	background: #e4e0ba;
 }
+
 .header {
 	position: absolute;
 	top: 4vh;
 	left: 4vh;
-	width: 100%;
 	text-align: left;
 	pointer-events: none;
 }
@@ -187,3 +187,40 @@ a:focus {
 }
 
 
+
+.btn {
+	width: 200px;
+	line-height: 50px;
+	height: 50px;
+	position: absolute;
+	background-color: transparent;
+	border-radius: 5px;
+	border: 2px solid hsl(36, 41%, 69%);
+	text-align: center;
+	font-size: 20px;
+	font-weight: 600;
+	cursor: pointer;
+	color: hsl(36, 41%, 69%);
+	transform: translate(-50%, -50%);
+	left: 50%;
+}
+
+.gamestart {	
+	top: 80%;	
+}
+.reset {
+	margin-top: 40%;
+}
+.gameover {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	left: 50%;
+	top: 30%;
+	display: none;
+	font-size: 20px;
+	color: hsl(36, 41%, 69%)
+}
+.overBtn {
+	top: 80%;
+	display: none;
+}

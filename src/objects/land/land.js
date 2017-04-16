@@ -23,12 +23,20 @@ class Land {
   }
 
   update(role) {
-    this.mesh.rotation.z += .005
+    this.mesh.rotation.z += .003
     this.obstacle.update(role)
   }
 
   getMesh() {
   	return this.mesh
+  }
+
+  getStatus() {
+    return this.obstacle.getStatus()
+  }
+
+  setStatus(status) {
+    this.obstacle.status = status
   }
 }
 

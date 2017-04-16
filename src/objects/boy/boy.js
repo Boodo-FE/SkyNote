@@ -2,31 +2,28 @@ import * as THREE from 'three'
 import Leg from './leg'
 import Head from './head'
 import Arm from './arm'
-// import { TweenMax } from 'gsap'
+import { TweenMax } from 'gsap'
 
 /**
  * 任务头部，必须参数：颜色：color、大小：size、位置：pt
  */
 class Boy {
     constructor(option) {
-        let br = 1.5 * option.size;
-        let tr = 0.5 * option.size;
+        let br = 3 * option.size;
+        let tr = 3 * option.size;
         let height = 3 * option.size;
         this.pt = option.pt;
 
         this.mesh = new THREE.Mesh(
-            new THREE.CylinderGeometry(br, tr, height, 32, 3),
+            new THREE.BoxGeometry(br, tr, height),
             new THREE.MeshLambertMaterial({
                 color: option.color,
                 shading: THREE.FlatShading
             }));
         this.mesh.position.set(option.pt[0], option.pt[1], option.pt[2]);
         this.mesh.rotation.x = this.mesh.rotation.x + Math.PI;
-        document.addEventListener('keydown', (e) => {
-                e.preventDefault()
-                this.update(180)
-            })
-            //添加脚
+        this.mesh.castShadow = true
+        this.mesh.receiveShadow = true
         this.legLef = new Leg({
             color: 0x59332e,
             size: option.size,
@@ -69,10 +66,6 @@ class Boy {
                 yoyo: true
             });
         }
-    }
-
-    stop() {
-
     }
 
     getMesh() {

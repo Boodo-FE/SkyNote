@@ -1,9 +1,10 @@
 import * as THREE from 'three'
+import Particle from '../boy/particle'
 // import { TweenMax } from 'gsap'
 
 class Obstacle {
   constructor() {    
-  	this.geometry = new THREE.BoxGeometry(20, 130, 100)
+  	this.geometry = new THREE.BoxGeometry(20, 80, 80)
   	this.material = new THREE.MeshPhongMaterial({
   		color: 0x23190f
   	})
@@ -31,10 +32,11 @@ class ObstacleHolder {
     this.mesh = new THREE.Object3D()
     this.obstaclesPool = []
     this.obstaclesInUse = []
-    this.n = 20
+    this.n = 24
     this.rotateAngle = 1
     this.createObstacle()
     this.spawnObstacle()
+    this.status = ''
   }
 
   createObstacle() {
@@ -53,7 +55,7 @@ class ObstacleHolder {
         obstacle = new Obstacle()
       }
 
-      obstacle.angle = i*6
+      obstacle.angle = i*15
       obstacle.mesh.position.x = 653*Math.cos(obstacle.angle) 
       obstacle.mesh.position.y = 653*Math.sin(obstacle.angle)
       obstacle.mesh.position.z = -20
@@ -72,17 +74,28 @@ class ObstacleHolder {
       Meshs.push(this.obstaclesInUse[i].getMesh());
     }
 
-    for(let i = 0; i < role.geometry.vertices.length; i++) {
-      let localVertex = role.geometry.vertices[i].clone()
+    for(let i = 0; i < role.mesh.geometry.vertices.length; i++) {
+      let localVertex = role.mesh.geometry.vertices[i].clone()
       let globalVertex = localVertex.applyMatrix4(role.mesh.matrix)
       let directionVector = globalVertex.sub(role.mesh.position)
       let ray = new THREE.Raycaster(originPoint, directionVector.clone().normalize());
       
       let collisionResults = ray.intersectObjects(Meshs);
       if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
-         console.log('crash!')
+         this.status = 'gameover'
+         
+         
+         console.log('explode!')
       }
     }
+  }
+
+  getStatus() {
+    return this.status
+  }
+
+  setStatus(status) {
+    this.status = status
   }
 
   getMesh() {
